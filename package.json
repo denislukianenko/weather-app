@@ -6,8 +6,7 @@
   "scripts": {
     "test": "parcel src/index.html",
     "prebuild": "rm -rf dist",
-    "build": "parcel build --public-url /weather-app/ src/index.html",
-    "push-dist": "push-dir --dir=dist --branch=gh-pages"
+    "build": "parcel build --public-url /weather-app/ src/index.html && push-dir --dir=dist --branch=gh-pages"
   },
   "repository": {
     "type": "git",
