@@ -7,7 +7,6 @@
     "test": "parcel src/index.html",
     "prebuild": "rm -rf dist",
     "build": "parcel build src/index.html",
-    "push": "git push",
     "push-dist": "push-dir --dir=dist --branch=gh-pages"
   },
   "repository": {
