@@ -1,0 +1,30 @@
+{
+  "name": "weather-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "parcel src/index.html",
+    "prebuild": "rm -rf dist",
+    "build": "parcel build src/index.html",
+    "push": "git push",
+    "push-dist": "push-dir --dir=dist --branch=gh-pages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denislukianenko/weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/denislukianenko/weather-app/issues"
+  },
+  "homepage": "https://github.com/denislukianenko/weather-app#readme",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "sass": "^1.17.2"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
