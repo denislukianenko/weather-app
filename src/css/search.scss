@@ -1,0 +1,41 @@
+.search-section {
+  display: flex;
+}
+
+.search-input {
+  padding: 3px 0 0 3px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.56em;
+  font-weight: 600;
+  color: white;
+  flex: 1 1 auto;
+  border-radius: 5px;
+}
+.search-input:hover {
+  background-color: #fff3;
+}
+.search-input:focus {
+  box-shadow: 0 0 0 3px rgba(176, 230, 255, 0.2);
+}
+
+.search-button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+
+  margin-left: 10px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  opacity: 1;
+}
+
+.search-button > img {
+  width: 30px;
+  height: 30px;
+}

@@ -1,1 +1,10 @@
 @import "normalize.css";
+@import "./base.scss";
+
+@import "header.scss";
+@import "main.scss";
+
+@import "search.scss";
+@import "weather-symbol.scss";
+@import "weather-info.scss";
+@import "future-weather.scss";

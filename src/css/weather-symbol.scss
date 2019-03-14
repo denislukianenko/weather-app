@@ -1,0 +1,24 @@
+.current-weather-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather-symbol-col {
+  width: 45%;
+}
+
+.weather-symbol {
+  width: 100%;
+}
+
+.weather-description {
+  margin: 0;
+  font-size: 1, 25em;
+  font-weight: 600;
+}
+
+.weather-type-scattered-clouds {
+  color: #ffbf00;
+  margin-left: 38%;
+}

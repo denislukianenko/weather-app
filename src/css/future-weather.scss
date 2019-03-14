@@ -1,0 +1,53 @@
+.future-weather-section {
+  margin-top: 50px;
+}
+
+.future-weather-section > h2 {
+  margin: 0;
+}
+
+.future-weather-mini-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8px;
+  width: 40px;
+}
+
+.future-weather-mini-card:first-of-type {
+  margin-left: 0;
+}
+.future-weather-mini-card:last-of-type {
+  margin-right: 0;
+}
+
+.card-symbol {
+  width: 100%;
+  height: 40px;
+  margin: 0 0 3px 0;
+}
+.card-temp {
+  margin: 0;
+}
+
+.future-weather-cards-wrapper {
+  margin-left: -25px;
+  margin-top: 15px;
+  width: 105%;
+  max-width: 105%;
+  overflow-x: scroll;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 25px,
+    #000 calc(100% - 100px),
+    transparent
+  );
+  padding-left: 25px;
+}
+
+.future-weather-cards {
+  padding-right: 100px;
+  display: flex;
+  width: 770px;
+}

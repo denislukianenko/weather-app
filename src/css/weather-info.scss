@@ -1,0 +1,36 @@
+.weather-value-descr {
+  margin: 0;
+}
+
+.weather-info-row {
+  display: flex;
+  line-height: 1;
+}
+
+.semi-transperent {
+  opacity: 0.5;
+}
+
+.row-medium {
+  margin-bottom: 7px;
+}
+.row-large {
+  font-size: 5em;
+}
+.row-medium {
+  font-size: 2.5em;
+}
+
+.unit-switch {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: white;
+  font-weight: 600;
+  line-height: 0.7;
+}
+
+.unit-switch:hover {
+  color: lightblue;
+}

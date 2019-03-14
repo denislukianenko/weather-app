@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="26px" viewBox="0 0 20 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>search</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-638.000000, -180.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Search" transform="translate(438.000000, 180.000000)">
+                <g id="search" transform="translate(200.000000, 0.000000)">
+                    <path d="M13.7212664,24.1243701 L11.6993992,19.9063216 L16.8488928,17.723708 L19.0143995,21.8391145 C20.4227752,25.1631762 14.9709602,27.1635121 13.7212664,24.1243701 Z M6.03256725,0.983061001 C17.3264133,-3.71398264 24.5381818,13.1272415 13.508904,17.7145646 C1.43197155,22.7375255 -5.30375125,5.6983914 6.03256725,0.983061001 Z M6.96135786,3.19369473 C-1.41456963,6.67761808 3.5582502,19.2577314 12.4810109,15.5466983 C20.6295336,12.1571582 15.3057259,-0.27695598 6.96135786,3.19369473 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
