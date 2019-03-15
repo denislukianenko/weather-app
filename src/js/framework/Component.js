@@ -31,7 +31,7 @@ export default class Component {
       this._assignDomAttributes(element, container);
       return container.children[0]; // A weird way to insert Component without div wrapper
     } else {
-      // TYPE Tag String
+      // TYPE Tag
       const container = document.createElement(element.tag);
       if (element.content) {
         container.innerHTML = element.content;

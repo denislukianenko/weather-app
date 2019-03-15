@@ -1,5 +1,4 @@
 import Component from "../../framework/Component";
-import favIcon from "../../../img/fav.svg";
 import searchIcon from "../../../img/search.svg";
 
 export default class SearchBar extends Component {
@@ -18,9 +17,6 @@ export default class SearchBar extends Component {
         name="city"
         id="city-input"
       />
-      <button class="search-button" type="button">
-        <img src="${favIcon}" alt="Fav Button Icon" />
-      </button>
       <button class="search-button" type="button">
         <img src="${searchIcon}" alt="Search Button Icon" />
       </button>
