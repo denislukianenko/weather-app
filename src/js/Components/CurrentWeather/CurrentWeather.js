@@ -1,26 +1,26 @@
 import Component from "../../framework/Component";
-import weatherSymbolCloudy from "../../../img/weather-symbols/cloudy.svg";
+import { weatherSymbols } from "../../data/weatherSymbols";
+
+import HI from "heat-index";
 
 export default class CurrentWeather extends Component {
   constructor(host, props) {
     super(host, props);
   }
 
-  get weatherSymbols() {
-    return {
-      Cloudy: weatherSymbolCloudy
-    };
-  }
-
   render() {
+    if (!this.props.cod) {
+      return "";
+    }
+
     return `
       <section class="current-weather-section">
-        <div class="weather-symbol-col">
+        <div class="weather-symbol-col weather-type-${this.props.weather[0].main.toLowerCase()}">
           <img src="${
-            this.weatherSymbols[this.props.weatherType]
+            weatherSymbols[this.props.weather[0].main]
           }" class="weather-symbol" />
-          <p class="weather-description weather-type-scattered-clouds">
-            ${this.props.weatherDescr}
+          <p class="weather-description">
+            ${this.props.weather[0].description}
           </p>
         </div>
         <div class="weather-info-col">
@@ -28,22 +28,30 @@ export default class CurrentWeather extends Component {
             <p class="weather-value-descr">
               Feels like
               <span class="semi-transperent">
-                (actually it's <span class="celsius-type-value">${
-                  this.props.celsiusActualValue
-                }°</span>
-                <span class="fahrenheit-type-value">${
-                  this.props.fahrenheitActualValue
-                }°</span>)
+                (actually it's <span class="celsius-type-value">${this.props.main.temp
+                  .toFixed(1)
+                  .replace(/\.0+$/, "")}°</span>
+                <span class="fahrenheit-type-value">${HI.toFahrenheit(
+                  this.props.main.temp.toFixed(1).replace(/\.0+$/, "")
+                )}°</span>)
               </span>
             </p>
           </div>
           <div class="weather-info-row row-large">
-            <b class="weather-value celsius-type-value">${
-              this.props.celsiusValue
-            }°</b>
-            <b class="weather-value fahrenheit-type-value">${
-              this.props.fahrenheitValue
-            }°</b>
+            <b class="weather-value celsius-type-value">${HI.heatIndex({
+              temperature: this.props.main.temp,
+              humidity: this.props.main.humidity
+            })
+              .toFixed(1)
+              .replace(/\.0+$/, "")}°</b>
+            <b class="weather-value fahrenheit-type-value">${HI.toFahrenheit(
+              HI.heatIndex({
+                temperature: this.props.main.temp,
+                humidity: this.props.main.humidity
+              })
+            )
+              .toFixed(1)
+              .replace(/\.0+$/, "")}°</b>
             <button
               id="calsius-button"
               class="unit-switch celsius-button"
@@ -66,11 +74,10 @@ export default class CurrentWeather extends Component {
           </div>
           <div class="weather-info-row row-medium">
             <b class="weather-value celsius-type-value">${
-              this.props.windMeterValue
+              this.props.wind.speed
             }m/s</b>
-            <b class="weather-value fahrenheit-type-value">${
-              this.props.windFeetValue
-            }ft/s</b>
+            <b class="weather-value fahrenheit-type-value">${this.props.wind
+              .speed * 3.281}ft/s</b>
           </div>
           <div class="weather-info-row">
             <p class="weather-value-descr">
@@ -78,7 +85,7 @@ export default class CurrentWeather extends Component {
             </p>
           </div>
           <div class="weather-info-row row-medium">
-            <b class="weather-value">${this.props.humidityValue}%</b>
+            <b class="weather-value">${this.props.main.humidity}%</b>
           </div>
         </div>
       </section>

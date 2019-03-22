@@ -2,52 +2,49 @@ import Component from "../../framework/Component";
 import { SearchBar } from "../SearchBar";
 import { CurrentWeather } from "../CurrentWeather";
 import { WeatherForecast } from "../WeatherForecast";
+
 import WeatherDataService from "../../services/WeatherDataService";
+import AppState from "../../services/AppState";
 
 export default class App extends Component {
   constructor(host) {
     super(host);
-    WeatherDataService.getLastCity(
-      this.onCityGotCallback,
-      this.onWeatherGotCallback
-    );
+    AppState.watch("WEATHER", this.updateMyself);
   }
-  get startRenderObj() {
+
+  init() {
+    this.logWeather = this.updateWeather.bind(this);
+    this.updateMyself = this.updateMyself.bind(this);
+
+    this.state = {};
+    WeatherDataService.getAllWeatherForCity("Kyiv, UA", this.updateWeather);
+  }
+
+  updateWeather(data) {
+    AppState.update("WEATHER", data);
+  }
+
+  updateMyself(subState) {
+    console.log("Apdated App with", subState);
+    this.updateState(subState);
+  }
+
+  render() {
     return [
       {
         tag: SearchBar,
         props: {
           initValue: "Kyiv, UA"
         }
-      }
-    ];
-  }
-  get weatherComponents() {
-    return [
+      },
       {
         tag: CurrentWeather,
-        props: WeatherDataService.getCurrentWeather()
+        props: this.state.weather
       },
       {
         tag: WeatherForecast,
-        props: {
-          weatherTill: "March 8",
-          forecastObj: WeatherDataService.getWeatherForecast()
-        }
+        props: this.state.forecast
       }
     ];
-  }
-
-  onCityGotCallback(requestString, onWeatherGotCallback) {
-    WeatherDataService.getCurrentWeather(requestString, onWeatherGotCallback);
-  }
-
-  onWeatherGotCallback(weather) {
-    console.log(this); //Undefinded
-    // This code is called from another context but I want see here this.render() and others
-  }
-
-  render() {
-    return this.startRenderObj;
   }
 }

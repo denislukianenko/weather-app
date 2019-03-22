@@ -2,8 +2,17 @@ export default class Component {
   constructor(host, props = {}) {
     this.host = host;
     this.props = props;
+    this.init();
     this._render();
   }
+
+  init() {}
+
+  updateState(stateDelta) {
+    this.state = Object.assign({}, this.state, stateDelta);
+    this._render();
+  }
+
   _render() {
     this.host.innerHTML = "";
     const content = this.render();
@@ -14,6 +23,7 @@ export default class Component {
       content
         .map(item => this._vDomPrototypeElementToHtmlElement(item))
         .forEach(htmlElement => {
+          if (!htmlElement) return;
           this.host.appendChild(htmlElement);
         });
     }

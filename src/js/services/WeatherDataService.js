@@ -1,21 +1,45 @@
+import { CONFIG } from "../data/appConfig";
+
 class WeatherDataService {
-  getLastCity(onCityGotCallback, onWeatherGotCallback) {
+  getCityData(callBack, cityString) {
+    if (cityString) {
+      getAllWeatherForCity(cityString, callBack);
+      return;
+    }
+    //If cityString is not defined
+    //It tries to define city based on localStorage last city or IP and search that
     if (localStorage.getItem("last-cities")) {
-      onCityGotCallback(
-        JSON.parse(localStorage.getItem("last-cities"))[0],
-        onWeatherGotCallback
-      );
+      const lastCity = JSON.parse(localStorage.getItem("last-cities"))[0];
+      getAllWeatherForCity(lastCity, callBack);
     } else {
       fetch("http://ip-api.com/json/?fields=18", { mode: "cors" })
         .then(response => response.json())
         .then(cityData => {
           this.addNewCityToLocalStorage(cityData);
-          onCityGotCallback(
-            JSON.parse(localStorage.getItem("last-cities"))[0],
-            onWeatherGotCallback
-          );
+          const lastCity = JSON.parse(localStorage.getItem("last-cities"))[0];
+          getAllWeatherForCity(lastCity, callBack);
         });
     }
+  }
+
+  getAllWeatherForCity(cityString, callBack) {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityString}&appid=${
+        CONFIG.apiKey
+      }&units=metric`
+    )
+      .then(response => response.json())
+      .then(weather => {
+        fetch(
+          `https://api.openweathermap.org/data/2.5/forecast?q=${cityString}&appid=${
+            CONFIG.apiKey
+          }&units=metric`
+        )
+          .then(response => response.json())
+          .then(forecast => {
+            callBack({ weather: weather, forecast: forecast });
+          });
+      });
   }
 
   addNewCityToLocalStorage(cityData) {
@@ -27,98 +51,6 @@ class WeatherDataService {
     citiesArray.unshift(cityString);
     citiesArray.length > 5 ? citiesArray.pop() : null;
     localStorage.setItem("last-cities", JSON.stringify(citiesArray));
-  }
-
-  getCurrentWeather(cityString, onWeatherGotCallback) {
-    console.log(cityString);
-    fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=Kyiv,UA&appid=67b0a7dc27ce0bfee6e818b778ba623a"
-    )
-      .then(response => response.json())
-      .then(weather => onWeatherGotCallback(weather));
-  }
-  getWeatherForecast() {
-    let currentDate = new Date();
-    return [
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      },
-      {
-        date: currentDate,
-        weatherType: "Cloudy",
-        celsiusValue: 3,
-        fahrenheitValue: 37
-      }
-    ];
   }
 }
 

@@ -16,6 +16,7 @@ export default class SearchBar extends Component {
         type="text"
         name="city"
         id="city-input"
+        value="${this.props.initValue}"
       />
       <button class="search-button" type="button">
         <img src="${searchIcon}" alt="Search Button Icon" />

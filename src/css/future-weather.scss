@@ -7,18 +7,18 @@
 }
 
 .future-weather-mini-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 8px;
+  margin-top: 20px;
+  margin-bottom: 13px;
   width: 40px;
 }
 
 .future-weather-mini-card:first-of-type {
   margin-left: 0;
-}
-.future-weather-mini-card:last-of-type {
-  margin-right: 0;
 }
 
 .card-symbol {
@@ -32,7 +32,6 @@
 
 .future-weather-cards-wrapper {
   margin-left: -25px;
-  margin-top: 15px;
   width: 105%;
   max-width: 105%;
   overflow-x: scroll;
@@ -49,5 +48,26 @@
 .future-weather-cards {
   padding-right: 100px;
   display: flex;
-  width: 770px;
+}
+
+.spacer {
+  min-width: 50px;
+}
+
+.future-weather-mini-card > .day-date {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-20px);
+  width: 100px;
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.future-weather-mini-card.has-date-label {
+  margin-left: 25px;
+}
+
+.future-weather-mini-card.has-date-label:first-of-type {
+  margin-left: 0;
 }
