@@ -10,14 +10,14 @@ class WeatherDataService {
     //It tries to define city based on localStorage last city or IP and search that
     if (localStorage.getItem("last-cities")) {
       const lastCity = JSON.parse(localStorage.getItem("last-cities"))[0];
-      getAllWeatherForCity(lastCity, callBack);
+      this.getAllWeatherForCity(lastCity, callBack);
     } else {
       fetch("http://ip-api.com/json/?fields=18", { mode: "cors" })
         .then(response => response.json())
         .then(cityData => {
           this.addNewCityToLocalStorage(cityData);
           const lastCity = JSON.parse(localStorage.getItem("last-cities"))[0];
-          getAllWeatherForCity(lastCity, callBack);
+          this.getAllWeatherForCity(lastCity, callBack);
         });
     }
   }
@@ -37,7 +37,11 @@ class WeatherDataService {
         )
           .then(response => response.json())
           .then(forecast => {
-            callBack({ weather: weather, forecast: forecast });
+            callBack({
+              weather: weather,
+              forecast: forecast,
+              cityString: cityString
+            });
           });
       });
   }

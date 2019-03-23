@@ -17,7 +17,7 @@ export default class App extends Component {
     this.updateMyself = this.updateMyself.bind(this);
 
     this.state = {};
-    WeatherDataService.getAllWeatherForCity("Kyiv, UA", this.updateWeather);
+    WeatherDataService.getCityData(this.updateWeather);
   }
 
   updateWeather(data) {
@@ -34,7 +34,7 @@ export default class App extends Component {
       {
         tag: SearchBar,
         props: {
-          initValue: "Kyiv, UA"
+          initValue: this.state.cityString || ""
         }
       },
       {

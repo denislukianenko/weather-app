@@ -180,7 +180,7 @@ export default class Sketch {
     // this.calibrated = false;
     let that = this;
 
-    this.maxTilt = 15;
+    this.maxTilt = 10;
     // setInterval(() => {
     //   this.calibrated = false;
     // },20000);
@@ -197,7 +197,7 @@ export default class Sketch {
     //   console.log(this.mouseTargetX.toFixed(1),this.mouseTargetY.toFixed(1));
     // }, true);
 
-    const rotationCoef = 0.15;
+    const rotationCoef = 0.1;
 
     gn.init({ gravityNormalized: true })
       .then(function() {
@@ -212,7 +212,7 @@ export default class Sketch {
         });
       })
       .catch(function(e) {
-        console.log("not supported");
+        console.log("DeviceOrientation or DeviceMotion not supported");
         // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
       });
   }

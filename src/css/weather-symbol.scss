@@ -9,8 +9,8 @@
 }
 
 .weather-symbol {
-  max-width: 90%;
-  max-height: 200px;
+  max-width: 100%;
+  max-height: 210px;
 }
 
 .weather-description {
@@ -23,6 +23,11 @@
   color: #ffbf00;
   margin-left: 50%;
   transform: translateX(-50%);
+}
+
+.weather-type-clouds > .weather-description {
+  color: #2a4e68;
+  transform: translateX(calc(50% - 20px));
 }
 
 .weather-type-clear > .weather-symbol {
