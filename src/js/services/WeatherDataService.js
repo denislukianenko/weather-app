@@ -12,7 +12,7 @@ class WeatherDataService {
       const lastCity = JSON.parse(localStorage.getItem("last-cities"))[0];
       this.getAllWeatherForCity(lastCity, callBack);
     } else {
-      fetch("http://ip-api.com/json/?fields=18", { mode: "cors" })
+      fetch("https://ipapi.co/json/", { mode: "cors" })
         .then(response => response.json())
         .then(cityData => {
           this.addNewCityToLocalStorage(cityData);
@@ -47,7 +47,7 @@ class WeatherDataService {
   }
 
   addNewCityToLocalStorage(cityData) {
-    let cityString = `${cityData.city},${cityData.countryCode}`;
+    let cityString = `${cityData.city},${cityData.country}`;
     let citiesArray = [];
     if (localStorage.getItem("last-cities")) {
       citiesArray = JSON.parse(localStorage.getItem("last-cities"));
